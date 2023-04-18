@@ -1,6 +1,6 @@
 {
   "name": "@rindo/sass",
-  "version": "1.4.1-0",
+  "version": "1.4.1",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
