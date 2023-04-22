@@ -31,7 +31,9 @@ describe('getRenderOptions', () => {
     };
     const output = util.getRenderOptions(input, sourceText, fileName, context);
     expect(output.data).toBe(`@import "/my/global/variables.scss";body { color: blue; }`);
-    expect(output.injectGlobalPaths).toBeUndefined();
+    // `injectGlobalPaths` in an input argument to the function, and does not exist on the return type (hence the type assertion)
+    // we have this check to verify that we have not accidentally copied it to the generated configuration
+    expect((output as any).injectGlobalPaths).toBeUndefined();
     expect(input.injectGlobalPaths).toHaveLength(1);
     expect(input.injectGlobalPaths[0]).toBe('/my/global/variables.scss');
   });
@@ -108,38 +110,38 @@ describe('createResultsId', () => {
 describe('getModuleId', () => {
 
   it('getModuleId non-scoped ~ package', () => {
-    const m = util.getModuleId('~navicons/dist/css/navicons.css');
-    expect(m.moduleId).toBe('navicons');
-    expect(m.filePath).toBe('dist/css/navicons.css');
+    const m = util.getModuleId('~famicons/dist/css/famicons.css');
+    expect(m.moduleId).toBe('famicons');
+    expect(m.filePath).toBe('dist/css/famicons.css');
   });
 
   it('getModuleId non-scoped package', () => {
-    const m = util.getModuleId('navicons/dist/css/navicons.css');
-    expect(m.moduleId).toBe('navicons');
-    expect(m.filePath).toBe('dist/css/navicons.css');
+    const m = util.getModuleId('famicons/dist/css/famicons.css');
+    expect(m.moduleId).toBe('famicons');
+    expect(m.filePath).toBe('dist/css/famicons.css');
   });
 
   it('getModuleId non-scoped package, no path', () => {
-    const m = util.getModuleId('navicons');
-    expect(m.moduleId).toBe('navicons');
+    const m = util.getModuleId('famicons');
+    expect(m.moduleId).toBe('famicons');
     expect(m.filePath).toBe('');
   });
 
   it('getModuleId scoped ~ package', () => {
-    const m = util.getModuleId('~@navify/core/dist/navify/css/navify.css');
-    expect(m.moduleId).toBe('@navify/core');
-    expect(m.filePath).toBe('dist/navify/css/navify.css');
+    const m = util.getModuleId('~@familyjs/core/dist/family/css/family.css');
+    expect(m.moduleId).toBe('@familyjs/core');
+    expect(m.filePath).toBe('dist/family/css/family.css');
   });
 
   it('getModuleId scoped package', () => {
-    const m = util.getModuleId('@navify/core/dist/navify/css/navify.css');
-    expect(m.moduleId).toBe('@navify/core');
-    expect(m.filePath).toBe('dist/navify/css/navify.css');
+    const m = util.getModuleId('@familyjs/core/dist/family/css/family.css');
+    expect(m.moduleId).toBe('@familyjs/core');
+    expect(m.filePath).toBe('dist/family/css/family.css');
   });
 
   it('getModuleId scoped package, no path', () => {
-    const m = util.getModuleId('@navify/core');
-    expect(m.moduleId).toBe('@navify/core');
+    const m = util.getModuleId('@familyjs/core');
+    expect(m.moduleId).toBe('@familyjs/core');
     expect(m.filePath).toBe('');
   });
 
