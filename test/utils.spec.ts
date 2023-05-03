@@ -108,38 +108,38 @@ describe('createResultsId', () => {
 describe('getModuleId', () => {
 
   it('getModuleId non-scoped ~ package', () => {
-    const m = util.getModuleId('~navicons/dist/css/navicons.css');
-    expect(m.moduleId).toBe('navicons');
-    expect(m.filePath).toBe('dist/css/navicons.css');
+    const m = util.getModuleId('~famicons/dist/css/famicons.css');
+    expect(m.moduleId).toBe('famicons');
+    expect(m.filePath).toBe('dist/css/famicons.css');
   });
 
   it('getModuleId non-scoped package', () => {
-    const m = util.getModuleId('navicons/dist/css/navicons.css');
-    expect(m.moduleId).toBe('navicons');
-    expect(m.filePath).toBe('dist/css/navicons.css');
+    const m = util.getModuleId('famicons/dist/css/famicons.css');
+    expect(m.moduleId).toBe('famicons');
+    expect(m.filePath).toBe('dist/css/famicons.css');
   });
 
   it('getModuleId non-scoped package, no path', () => {
-    const m = util.getModuleId('navicons');
-    expect(m.moduleId).toBe('navicons');
+    const m = util.getModuleId('famicons');
+    expect(m.moduleId).toBe('famicons');
     expect(m.filePath).toBe('');
   });
 
   it('getModuleId scoped ~ package', () => {
-    const m = util.getModuleId('~@navify/core/dist/navify/css/navify.css');
-    expect(m.moduleId).toBe('@navify/core');
-    expect(m.filePath).toBe('dist/navify/css/navify.css');
+    const m = util.getModuleId('~@familyjs/core/dist/family/css/family.css');
+    expect(m.moduleId).toBe('@familyjs/core');
+    expect(m.filePath).toBe('dist/family/css/family.css');
   });
 
   it('getModuleId scoped package', () => {
-    const m = util.getModuleId('@navify/core/dist/navify/css/navify.css');
-    expect(m.moduleId).toBe('@navify/core');
-    expect(m.filePath).toBe('dist/navify/css/navify.css');
+    const m = util.getModuleId('@familyjs/core/dist/family/css/family.css');
+    expect(m.moduleId).toBe('@familyjs/core');
+    expect(m.filePath).toBe('dist/family/css/family.css');
   });
 
   it('getModuleId scoped package, no path', () => {
-    const m = util.getModuleId('@navify/core');
-    expect(m.moduleId).toBe('@navify/core');
+    const m = util.getModuleId('@familyjs/core');
+    expect(m.moduleId).toBe('@familyjs/core');
     expect(m.filePath).toBe('');
   });
 

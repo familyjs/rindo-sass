@@ -33,7 +33,7 @@ Sass options can be passed to the plugin within the rindo config, which are used
 
 ### Inject Globals Sass Paths
 
-The `injectGlobalPaths` config is an array of paths that automatically get added as `@import` declarations to all components. This can be useful to inject Sass variables, mixins and functions to override defaults of external collections. For example, apps can override default Sass variables of [Navify components](https://www.npmjs.com/package/@navify/core). Relative paths within `injectGlobalPaths` should be relative to the rindo config file.
+The `injectGlobalPaths` config is an array of paths that automatically get added as `@import` declarations to all components. This can be useful to inject Sass variables, mixins and functions to override defaults of external collections. For example, apps can override default Sass variables of [Family components](https://www.npmjs.com/package/@familyjs/core). Relative paths within `injectGlobalPaths` should be relative to the rindo config file.
 
 ```js
 exports.config = {
