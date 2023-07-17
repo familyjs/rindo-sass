@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@familyjs/prettier-config": "^2.0.0",
-    "@rindo/core": "^3.0.0",
+    "@rindo/core": "^4.0.1",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^16.11.48",
