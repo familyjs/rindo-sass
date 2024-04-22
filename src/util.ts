@@ -1,7 +1,8 @@
+import path from 'node:path';
+import type { LegacyAsyncImporter, LegacyImporterResult } from 'sass';
+import type { LegacyOptions } from 'sass/types/legacy/options';
+
 import * as d from './declarations';
-import * as path from 'path';
-import { LegacyAsyncImporter, LegacyImporterResult } from 'sass';
-import { LegacyOptions } from 'sass/types/legacy/options';
 
 /**
  * Determine if the Sass plugin should be applied, based on the provided `fileName`
@@ -10,11 +11,11 @@ import { LegacyOptions } from 'sass/types/legacy/options';
  * @returns `true` if the name of the file ends with a sass extension (.scss, .sass), case insensitive. `false`
  * otherwise
  */
-export function usePlugin(fileName: string) {
+export function usePlugin(fileName: string): boolean {
   if (typeof fileName === 'string') {
     return /(\.scss|\.sass)$/i.test(fileName);
   }
-  return true;
+  return false;
 }
 
 /**
@@ -29,7 +30,7 @@ export function getRenderOptions(
   opts: d.PluginOptions,
   sourceText: string,
   fileName: string,
-  context: d.PluginCtx
+  context: d.PluginCtx,
 ): LegacyOptions<'async'> {
   // Create a copy of the original sass config, so we don't modify the one provided.
   // Explicitly add `data` (as it's a required field) to be the source text
@@ -105,7 +106,7 @@ export function getRenderOptions(
     const importer: LegacyAsyncImporter = (
       url: string,
       _prev: string,
-      done: (data: LegacyImporterResult) => void
+      done: (data: LegacyImporterResult) => void,
     ): void => {
       if (typeof url === 'string') {
         if (url.startsWith('~')) {

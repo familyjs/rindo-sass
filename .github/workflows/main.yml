@@ -10,25 +10,29 @@ on:
 
 jobs:
   build:
-    name: (build rindo ${{ matrix.rindo_version }})
+    name: (rindo-sass with Rindo version ${{ matrix.rindo_version }})
     strategy:
+      fail-fast: false
       matrix:
-        # Run two different versions in parallel:
+        # Run with multiple different versions of Rindo in parallel:
         # 1. DEFAULT - uses the version of Rindo written in `package-lock.json`, keeping the same version used by the
         # Rindo team as a source of truth
         # 2. 2 - will install the latest release under major version 2 of Rindo. This should be kept as long as this
         # library supports Rindo v2.Y.Z
-        rindo_version: ['DEFAULT', '2']
-
+        # 3. 3 - will install the latest release under major version 3 of Rindo. This should be kept as long as this
+        # library supports Rindo v3.Y.Z
+        # 4. 4 - will install the latest release under major version 4 of Rindo. This should be kept as long as this
+        # library supports Rindo v4.Y.Z
+        rindo_version: ['DEFAULT', '2', '3', '4']
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # v3.1.0
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       with:
         persist-credentials: false
     - name: Use Node from Volta
-      uses: actions/setup-node@969bd2663942d722d85b6a8626225850c2f7be4b # v3.5.0
+      uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
       with:
         node-version-file: 'package.json'
         cache: 'npm'
